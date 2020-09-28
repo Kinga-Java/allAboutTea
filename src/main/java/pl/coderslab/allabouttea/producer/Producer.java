@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.coderslab.allabouttea.opinion.Opinion;
+import pl.coderslab.allabouttea.tea.Tea;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,7 +24,9 @@ public class Producer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String address;
-    private String country;
+    @Valid
+    private ProducerDetails producerDetails;
+
+    @OneToMany(mappedBy = "producers")
+    private List<Tea> tea;
 }
