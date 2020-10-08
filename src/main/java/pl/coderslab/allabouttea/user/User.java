@@ -1,17 +1,19 @@
-package pl.coderslab.allabouttea.user;
+/*package pl.coderslab.allabouttea.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.coderslab.allabouttea.opinion.Opinion;
+*//*import pl.coderslab.allabouttea.opinion.Opinion;*//*
 import pl.coderslab.allabouttea.tea.Tea;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -35,8 +37,11 @@ public class User {
 
     private String lastName;
 
-    @Column(nullable = false)
-    private String role;
+    @ElementCollection
+    @CollectionTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "username", referencedColumnName = "username")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     @NotBlank
     @Column(nullable = false)
@@ -50,9 +55,11 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user")
-    private List<Tea> tea;
+    private List<Tea> tea;*/
 
+/*
     @OneToMany(mappedBy = "user")
     private List<Opinion> opinion;
+*/
 
-}
+/*}*/
