@@ -9,6 +9,7 @@ import pl.coderslab.allabouttea.tea.Tea;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Getter
@@ -18,11 +19,15 @@ import java.util.List;
 @Entity
 @Table(name = Producer.TABLE)
 public class Producer {
-    public final static String TABLE = "producer";
+    public final static String TABLE = "producers";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
+    @Column(nullable = false)
+    private String name;
 
     @Valid
     private ProducerDetails producerDetails;

@@ -15,10 +15,6 @@ public class ProducerDetails {
 
     @NotBlank
     @Column(nullable = false)
-    private String name;
-
-    @NotBlank
-    @Column(nullable = false)
     private String address;
 
     @NotBlank

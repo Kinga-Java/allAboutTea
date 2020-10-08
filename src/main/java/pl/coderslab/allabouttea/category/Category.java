@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name=Category.TABLE)
 public class Category {
-    public final static String TABLE = "categories";
+    public final static String TABLE = "category";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,5 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Tea> tea;
-
 
 }
