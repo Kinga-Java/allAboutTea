@@ -29,8 +29,7 @@ public interface TeaRepository extends JpaRepository<Tea, Long> {
     @Query("select t from Tea t where t.region like :region% order by t.created desc")
     List<Tea> selectTeaByRegion(@Param("region")String region);
 
-
-
-
+    @Query(value = "SELECT avg(o.rating) FROM Opinion o where o.tea.id=?1")
+    double getavgRating(Long id);
 
 }

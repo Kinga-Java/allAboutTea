@@ -4,7 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-<body>
 <h1>${producer.name}</h1>
 <br>
 <table border="1">

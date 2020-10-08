@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.coderslab.allabouttea.category.Category;
 import pl.coderslab.allabouttea.category.CategoryRepository;
 import pl.coderslab.allabouttea.category.CategoryService;
+import pl.coderslab.allabouttea.opinion.Opinion;
 import pl.coderslab.allabouttea.producer.Producer;
 /*import pl.coderslab.allabouttea.category.Category;
 import pl.coderslab.allabouttea.producer.Producer;*/
@@ -32,7 +33,11 @@ public class TeaService {
         return teaRepository.findTeaByUserId(id);
     }*/
 
-    public List<Tea>findTeaByCategory(Category category){
+    public void ratingAverage(Tea tea){
+       tea.setAverageNote(teaRepository.getavgRating(tea.getId()));
+    }
+
+        public List<Tea>findTeaByCategory(Category category){
         return teaRepository.findTeaByCategory(category);
     }
 

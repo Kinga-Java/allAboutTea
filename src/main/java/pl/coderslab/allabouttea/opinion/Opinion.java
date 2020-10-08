@@ -40,6 +40,7 @@ public class Opinion {
     @Column(name ="updated_on")
     private LocalDateTime updated;
 
+
     @NotNull
     @ManyToOne
     private Tea tea;

@@ -25,4 +25,5 @@ public class OpinionService {
     public void updateOpinion(Opinion opinion){
         opinionRepository.save(opinion);
     }
+
 }

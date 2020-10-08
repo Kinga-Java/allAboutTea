@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.allabouttea.category.Category;
 import pl.coderslab.allabouttea.category.CategoryService;
+import pl.coderslab.allabouttea.opinion.OpinionRepository;
+import pl.coderslab.allabouttea.opinion.OpinionService;
 import pl.coderslab.allabouttea.producer.Producer;
 import pl.coderslab.allabouttea.producer.ProducerService;
 /*import pl.coderslab.allabouttea.user.User;
@@ -26,6 +28,7 @@ public class TeaController {
     /*private final UserService userService;*/
     private final ProducerService producerService;
     private final CategoryService categoryService;
+    private final OpinionService opinionService;
 
  /*   @ModelAttribute("users")
     public List<User> allUsers() {
@@ -36,6 +39,8 @@ public class TeaController {
     public List<Producer> getAllProducers() {
         return producerService.getAll();
     }
+
+
 
     @ModelAttribute("category")
     public List<Category> getAllCategories() {
@@ -86,11 +91,12 @@ public class TeaController {
     }
 
     @RequestMapping("/{id}")
-    public String projectDetails(@PathVariable long id, Model model) {
+    public String teatDetails(@PathVariable long id, Model model) {
         Optional<Tea> tea = teaService.findTeaById(id);
         if (!tea.isPresent()) {
             return "Nie odnaleziono herbaty o id" + id;
         }
+        teaService.ratingAverage(tea.get());
         model.addAttribute("tea", tea.get());
         return "tea/tea";
     }

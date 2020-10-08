@@ -54,6 +54,9 @@
             </tr>
         </c:forEach>
     </table>
+    <article>
+        <p> Średnia opinia ${tea.averageNote}</p>
+    </article>
 </article>
 </body>
 </html>

@@ -30,6 +30,9 @@ public class Tea {
     @Column(nullable = false)
     private String name;
 
+    @Transient
+    private double avgRating;
+
     @NotBlank(message= "Podaj region pochodzenia herbaty")
     @Column(nullable = false)
     private String region;
@@ -39,6 +42,9 @@ public class Tea {
     private String aroma;
 
     private LocalDate created;
+
+    @Transient
+    private double averageNote;
 
     @PrePersist
     public void prePersist() {
