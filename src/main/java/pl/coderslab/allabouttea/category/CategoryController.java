@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/category")
@@ -17,22 +18,24 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping("/add")
-    public String addCategory(Model model){
+    public String addCategory(Model model) {
         model.addAttribute("category", new Category());
         return "category/form";
     }
+
+    @PostMapping("/add")
+    public String saveCategory(@Valid Category category, BindingResult result) {
+        if (result.hasErrors()) {
+            return "category/add";
+        }
+        categoryService.addCategory(category);
+        return "redirect:/category/all";
+    }
+
+
     @GetMapping("all")
     public String getAllCategories(Model model) {
         model.addAttribute("category", categoryService.getAll());
         return "category/all";
-    }
-
-    @PostMapping("/add")
-    public String saveCategory(@Valid Category category, BindingResult result){
-        if(result.hasErrors()){
-            return "category/form";
-        }
-        categoryService.addCategory(category);
-        return "redirect:/category/all";
     }
 }

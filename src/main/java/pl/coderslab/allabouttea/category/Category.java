@@ -1,9 +1,6 @@
 package pl.coderslab.allabouttea.category;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.coderslab.allabouttea.tea.Tea;
 
 import javax.persistence.*;
@@ -12,8 +9,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name=Category.TABLE)
 public class Category {
@@ -24,7 +19,7 @@ public class Category {
     private long id;
 
     @NotBlank
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @OneToMany(mappedBy = "category")

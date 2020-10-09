@@ -7,6 +7,7 @@ import lombok.Setter;
 import pl.coderslab.allabouttea.category.Category;
 import pl.coderslab.allabouttea.opinion.Opinion;
 import pl.coderslab.allabouttea.producer.Producer;
+import pl.coderslab.allabouttea.user.User;
 /*import pl.coderslab.allabouttea.user.User;*/
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -51,8 +52,8 @@ public class Tea {
         created = LocalDate.now();
     }
 
- /*   @ManyToOne
-    private User user;*/
+    @ManyToOne
+    private User user;
 
     @OneToMany(mappedBy = "tea")
     private List<Opinion> opinion;

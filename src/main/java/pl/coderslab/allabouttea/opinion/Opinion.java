@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 import pl.coderslab.allabouttea.tea.Tea;
+import pl.coderslab.allabouttea.user.User;
 
 
 import javax.persistence.*;
@@ -45,9 +46,9 @@ public class Opinion {
     @ManyToOne
     private Tea tea;
 
- /*   @ManyToOne
+    @ManyToOne
     private User user;
-*/
+
     @PrePersist
     public void perPersist() {
         created = LocalDateTime.now().withNano(0);

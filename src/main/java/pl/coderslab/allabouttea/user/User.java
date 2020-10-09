@@ -1,10 +1,10 @@
-/*package pl.coderslab.allabouttea.user;
+package pl.coderslab.allabouttea.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-*//*import pl.coderslab.allabouttea.opinion.Opinion;*//*
+import pl.coderslab.allabouttea.opinion.Opinion;
 import pl.coderslab.allabouttea.tea.Tea;
 
 import javax.persistence.*;
@@ -17,13 +17,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = User.TABLE)
 public class User {
 
-    public final static String TABLE = "users";
+    public final static String TABLE = "user";
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -31,17 +29,11 @@ public class User {
 
     @NotBlank
     @Column(nullable = false)
-    private String userName;
+    private String userNick;
 
     private String firstName;
 
     private String lastName;
-
-    @ElementCollection
-    @CollectionTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "username", referencedColumnName = "username")
-    )
-    private Set<Role> roles = new HashSet<>();
 
     @NotBlank
     @Column(nullable = false)
@@ -54,12 +46,24 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "user")
-    private List<Tea> tea;*/
+    @Column(nullable = false)
+    private Boolean active;
 
-/*
+    @Column(nullable = false)
+    private String role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Tea> tea;
+
     @OneToMany(mappedBy = "user")
     private List<Opinion> opinion;
-*/
 
-/*}*/
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userNick + '\'' +
+                ", role='" + role + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+}

@@ -1,4 +1,4 @@
-/*package pl.coderslab.allabouttea.user;
+package pl.coderslab.allabouttea.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,4 +9,4 @@ public class LoginController {
     public String login(){
         return "/login";
     }
-}*/
+}
