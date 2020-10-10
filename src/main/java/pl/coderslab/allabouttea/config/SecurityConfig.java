@@ -45,6 +45,7 @@ return new BCryptPasswordEncoder();
                 .antMatchers(staticResources).permitAll()
                 .antMatchers("/admin").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/tea/all").permitAll()
                 .antMatchers("/logout").permitAll()
                 .antMatchers("/files/**").permitAll()
                 .antMatchers("/upload/**").permitAll()

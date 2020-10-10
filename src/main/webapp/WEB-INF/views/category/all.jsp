@@ -60,17 +60,3 @@
 </body>
 <c:import url="/WEB-INF/views/components/footer.jsp"/>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

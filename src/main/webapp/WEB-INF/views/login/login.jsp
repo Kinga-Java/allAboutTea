@@ -9,15 +9,12 @@
 
 <body>
 <div class="container">
-    <div style="text-align: center" id="logo">
-        <img src="/images/logo.png">
-    </div>
 </div>
 <c:if test="${param['error'] != null}">
     <div class="window">
         <div class="notification is-danger">
             <button class="delete"></button>
-            Dane logowania są błądne. Spróbuj jeszcze raz!
+            Dane logowania są błądne.
         </div>
     </div>
 </c:if>
@@ -56,7 +53,7 @@
     </form>
     <br>
     <div class="is-link">
-        <a href="/register">Nie masz jeszcze konta? Zarejestruj się!</a>
+        <a href="/register">Zarejestruj się!</a>
     </div>
 </section>
 </form>
