@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -58,5 +59,49 @@
         <p> Średnia opinia ${tea.averageNote}</p>
     </article>
 </article>
+
+
+
+<div class="level-left">
+    <div class="level-item">
+        <form method="post" enctype="multipart/form-data" action="/files/upload">
+            <label>Dodaj plik:
+                <input type="file" name="file"
+                       accept="application/pdf,image/*"/>
+            </label>
+            <button name="idTea" value="${tea.id}" type="submit" class="button is-success">Dodaj
+            </button>
+            <sec:csrfInput/>
+        </form>
+    </div>
+</div>
+<br>
+<div class="level-left">
+    <div class="level-item">
+        <c:if test="${emptyFile != null}">
+            ${emptyFile}
+        </c:if>
+
+        <c:if test="${emptyList != null}">
+            ${emptyList}
+        </c:if>
+        <c:if test="${emptyList == null}">
+            <table class="table">
+             <br><br>
+                <c:forEach items="${tea.files}" var="file">
+                    <p>
+                        <img title="${file.originalFileName}" src="/files/${file.id}" width="250" height="250"/>
+                    </p>
+                </c:forEach>
+            </table>
+
+        </c:if>
+    </div>
+</div>
+<br>
+
+
+
+
 </body>
 </html>

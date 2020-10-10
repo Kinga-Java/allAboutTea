@@ -28,6 +28,6 @@ public class UserController {
             return "user/form";
         }
         userService.registerUser(user);
-        return "redirect:/login";
+        return "/login/login";
     }
 }

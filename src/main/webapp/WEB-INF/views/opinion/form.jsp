@@ -12,6 +12,7 @@
 </head>
 <body>
 <form:form method="post" modelAttribute="opinion">
+    <form:hidden path="user.id" value="${loggedUser.id}"/>
     <form:hidden path="id"/>
     Jakiej herbaty dotyczy opinia: <form:select path="tea">
     <form:option value="0" label="wybierz herbatę"/>

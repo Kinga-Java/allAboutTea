@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 import pl.coderslab.allabouttea.opinion.Opinion;
 import pl.coderslab.allabouttea.tea.Tea;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +20,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = User.TABLE)
 public class User {
 
@@ -41,6 +45,10 @@ public class User {
     private String password;
 
     @NotBlank
+    @Transient
+    private String repeatPassword;
+
+    @NotBlank
     @Email
     //@Unique
     @Column(nullable = false, unique = true)
@@ -58,10 +66,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Opinion> opinion;
 
+
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userNick + '\'' +
+                "userNick='" + userNick + '\'' +
                 ", role='" + role + '\'' +
                 ", email='" + email + '\'' +
                 '}';

@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
     private final UserService userService;
 
-    @RequestMapping("/Admin")
+    @RequestMapping("/admin")
     public String createUserAdmin(){
         userService.createUserAdmin();
-        return "redirect:/login";
+        return "login/login";
     }
 
-    @GetMapping("/Admin/allUsers")
+/*    @GetMapping("/adminDashboard/allUsers")
     public String usersList(Model model){
         model.addAttribute("user", userService.getAll());
             return "admin/allUsers";
 
-    }
-
+    }*/
 }

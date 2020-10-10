@@ -15,6 +15,7 @@
         <td>Ocena</td>
         <td>Treść opinii</td>
         <td>Data utworzenia</td>
+        <td>Użytkownik</td>
     </tr>
     <c:forEach items="${opinion}" var = "opinion">
         <tr>
@@ -23,6 +24,7 @@
             <td>${opinion.rating}</td>
             <td>${opinion.description}</td>
             <td>${opinion.created}</td>
+            <td>${opinion.user.userNick}</td>
         </tr>
     </c:forEach>
 </table>

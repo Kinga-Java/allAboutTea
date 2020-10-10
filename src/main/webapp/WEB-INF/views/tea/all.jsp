@@ -16,7 +16,7 @@
         <td>Region</td>
         <td>Producent</td>
         <td>Data utworzenia</td>
-        <%--<td>Użytkownik</td>--%>
+        <td>Użytkownik</td>
         <td>Szczegóły</td>
     </tr>
     <c:forEach items="${tea}" var = "tea">
@@ -27,7 +27,7 @@
             <td>${tea.region}</td>
             <td>${tea.producers.name}</td>
             <td>${tea.created}</td>
-          <%--<td>${tea.user.userName}</td>--%>
+          <td>${tea.user.userNick}</td>
             <td><a href="/tea/${tea.id}">Zobacz</a></td>
         </tr>
     </c:forEach>

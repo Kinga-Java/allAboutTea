@@ -9,9 +9,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.allabouttea.tea.Tea;
 import pl.coderslab.allabouttea.tea.TeaService;
+import pl.coderslab.allabouttea.user.User;
+import pl.coderslab.allabouttea.user.UserService;
 
 import javax.validation.Valid;
 import javax.validation.Validator;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -21,11 +24,16 @@ import java.util.List;
 public class OpinionController {
     private final OpinionService opinionService;
     private final TeaService teaService;
-    private final Validator validator;
+    private final UserService userService;
 
     @ModelAttribute("tea")
     public List<Tea> getAllTeas() {
         return teaService.getAllTeas();
+    }
+
+    @ModelAttribute("loggedUser")
+    public User showUser(Principal principal) {
+        return userService.findByEmail(principal.getName());
     }
 
     @GetMapping("add")

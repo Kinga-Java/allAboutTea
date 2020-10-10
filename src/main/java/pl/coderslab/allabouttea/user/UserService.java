@@ -2,6 +2,7 @@ package pl.coderslab.allabouttea.user;
 
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@Slf4j
 @RequiredArgsConstructor
 public class UserService {
 
@@ -48,10 +50,12 @@ public class UserService {
         userAdmin.setUserNick("Admin");
         userAdmin.setFirstName("Admin");
         userAdmin.setLastName("Admin");
-        userAdmin.setPassword(passwordEncoder.encode("admin"));
+        userAdmin.setActive(true);
+        userAdmin.setPassword(passwordEncoder.encode("adminadmin"));
         userAdmin.setRole(Role.ADMIN.toString());
-        userAdmin.setEmail("TestAdmin@gmail.com");
+        userAdmin.setEmail("admin@gmail.com");
         userRepository.save(userAdmin);
+        log.debug("Użytkownik zarejestrowany:", userAdmin);
     }
 
     public void editUser(User user){

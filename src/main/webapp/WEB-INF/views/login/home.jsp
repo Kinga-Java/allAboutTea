@@ -1,3 +1,5 @@
+
+
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
@@ -10,7 +12,7 @@
     <title>Homepage</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <c:import url="components/leftMenu.jsp"/>
+    <c:import url="/WEB-INF/views/components/leftMenu.jsp"/>
 
 </head>
                 <body>
@@ -19,6 +21,7 @@
                     </div>
                     <div id="here" class="columns">
                         <div class="column is-narrow">
+                            <c:import url="/WEB-INF/views/components/menuUser.jsp"/>
                         </div>
                         <div class="column">
 
@@ -58,5 +61,6 @@
 
 
 </body>
-<c:import url="components/footer.jsp"/>
+<c:import url="/WEB-INF/views/components/footer.jsp"/>
 </html>
+

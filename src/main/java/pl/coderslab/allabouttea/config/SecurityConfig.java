@@ -31,6 +31,7 @@ private final DataSource dataSource;
 public BCryptPasswordEncoder passwordEncoder() {
 return new BCryptPasswordEncoder();
 }
+
     private String[] staticResources = {
             "/css/**",
             "/images/**",
@@ -42,20 +43,32 @@ return new BCryptPasswordEncoder();
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(staticResources).permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/admin").permitAll()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/logout").permitAll()
+                .antMatchers("/files/**").permitAll()
+                .antMatchers("/upload/**").permitAll()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/user/add").permitAll()
-                .antMatchers("/about").authenticated()
+                .antMatchers("/homeuser").authenticated()
                 .antMatchers("/category/**").authenticated()
                 .antMatchers("/opinion/**").authenticated()
                 .antMatchers("/producer/**").authenticated()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/tea/**").authenticated()
+                .antMatchers("/admiadmin/**").hasRole("ADMIN")
+                .antMatchers("/tea/add").authenticated()
+                .antMatchers("/opinion/add").authenticated()
+                .antMatchers("/category/add").authenticated()
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
-                .and().logout().logoutSuccessUrl("/allAboutTea");
+                .defaultSuccessUrl("/homeuser", false)
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessUrl("/home")
+                .and()
+                .httpBasic();
     }
 }

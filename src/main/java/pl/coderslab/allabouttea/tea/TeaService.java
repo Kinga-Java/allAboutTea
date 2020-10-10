@@ -3,13 +3,9 @@ package pl.coderslab.allabouttea.tea;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.allabouttea.category.Category;
-import pl.coderslab.allabouttea.category.CategoryRepository;
-import pl.coderslab.allabouttea.category.CategoryService;
-import pl.coderslab.allabouttea.opinion.Opinion;
+import pl.coderslab.allabouttea.file.TeaFile;
 import pl.coderslab.allabouttea.producer.Producer;
-/*import pl.coderslab.allabouttea.category.Category;
-import pl.coderslab.allabouttea.producer.Producer;*/
-/*import pl.coderslab.allabouttea.user.User;*/
+
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -33,8 +29,12 @@ public class TeaService {
         return teaRepository.findTeaByUserId(id);
     }*/
 
-    public void ratingAverage(Tea tea){
-       tea.setAverageNote(teaRepository.getavgRating(tea.getId()));
+    public void ratingAverage(Tea tea) {
+        if (!tea.getOpinion().isEmpty()) {
+            tea.setAverageNote(teaRepository.getavgRating(tea.getId()));
+        } else {
+            tea.setAverageNote(0);
+        }
     }
 
         public List<Tea>findTeaByCategory(Category category){
@@ -68,4 +68,15 @@ public class TeaService {
     public void deleteTea(Tea tea){
         teaRepository.delete(tea);
     }
+
+    public Tea findProjectAndFilesById(long id){
+        return  teaRepository.findProjectAndFilesById(id);
+    }
+
+    public void saveAttachment(Tea tea, TeaFile dbFile){
+        List<TeaFile> files = tea.getFiles();
+        files.add(dbFile);
+        teaRepository.save(tea);
+    }
+
 }

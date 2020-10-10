@@ -29,6 +29,9 @@
     Hasło: <form:password path="password"/>
     <br> <form:errors path="password" cssClass="error"/>
     <br><br>
+    Powtórz hasło: <form:password path="repeatPassword"/>
+    <br> <form:errors path="repeatPassword" cssClass="error"/>
+    <br><br>
     <input type="submit" value="Zarejestruj"/>
     <sec:csrfInput/>
 </form:form>

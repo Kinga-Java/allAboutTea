@@ -32,4 +32,7 @@ public interface TeaRepository extends JpaRepository<Tea, Long> {
     @Query(value = "SELECT avg(o.rating) FROM Opinion o where o.tea.id=?1")
     double getavgRating(Long id);
 
+ @Query("SELECT t FROM Tea t JOIN t.files WHERE t.id = ?1")
+ Tea findProjectAndFilesById(long id);
+
 }

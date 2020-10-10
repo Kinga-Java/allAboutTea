@@ -11,11 +11,14 @@ import pl.coderslab.allabouttea.opinion.OpinionRepository;
 import pl.coderslab.allabouttea.opinion.OpinionService;
 import pl.coderslab.allabouttea.producer.Producer;
 import pl.coderslab.allabouttea.producer.ProducerService;
+import pl.coderslab.allabouttea.user.User;
+import pl.coderslab.allabouttea.user.UserService;
 /*import pl.coderslab.allabouttea.user.User;
 import pl.coderslab.allabouttea.user.UserService;*/
 
 import javax.validation.Valid;
 import javax.validation.Validator;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,22 +27,20 @@ import java.util.Optional;
 @RequestMapping("/tea")
 public class TeaController {
     private final TeaService teaService;
-    private final Validator validator;
-    /*private final UserService userService;*/
+    private final UserService userService;
     private final ProducerService producerService;
     private final CategoryService categoryService;
     private final OpinionService opinionService;
 
- /*   @ModelAttribute("users")
-    public List<User> allUsers() {
-        return userService.getAll();
-    }*/
+    @ModelAttribute("loggedUser")
+    public User showUser(Principal principal) {
+        return userService.findByEmail(principal.getName());
+    }
 
     @ModelAttribute("producers")
     public List<Producer> getAllProducers() {
         return producerService.getAll();
     }
-
 
 
     @ModelAttribute("category")
@@ -92,12 +93,16 @@ public class TeaController {
 
     @RequestMapping("/{id}")
     public String teatDetails(@PathVariable long id, Model model) {
-        Optional<Tea> tea = teaService.findTeaById(id);
-        if (!tea.isPresent()) {
+        Optional<Tea> teaOptional = teaService.findTeaById(id);
+        if (!teaOptional.isPresent()) {
             return "Nie odnaleziono herbaty o id" + id;
         }
-        teaService.ratingAverage(tea.get());
-        model.addAttribute("tea", tea.get());
+        Tea tea = teaOptional.get();
+        if(tea.getFiles().isEmpty()){
+            model.addAttribute("emptyList", "Nieodnaleziono załączników");
+        }
+        teaService.ratingAverage(tea);
+        model.addAttribute("tea", tea);
         return "tea/tea";
     }
 }
